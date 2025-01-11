@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style2.css">
+    <title>Results</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dataset Analysis Results</h1>
+        </header>
+
+        <section class="dataset-summary">
+            <div class="section-header">
+                <h2>Dataset Summary</h2>
+            </div>
+            <div class="summary-details">
+                <h3>Columns:</h3>
+                <ul>
+                    {% for col in summary.columns %}
+                        <li>{{ col }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Shape:</h3>
+                <p>{{ summary.shape }}</p>
+
+                <h3>First 5 rows of the dataset:</h3>
+                <div class="table-container">
+                    {{ summary.head|safe }}
+                </div>
+            </div>
+        </section>
+
+        <section class="model-results">
+            <div class="section-header">
+                <h2>Model Results</h2>
+            </div>
+            <div class="results-details">
+                <h3>Accuracy:</h3>
+                <p>{{ accuracy }}</p>
+
+                <h3>Classification Report:</h3>
+                <pre>{{ classification_report }}</pre>
+            </div>
+        </section>
+
+        <section class="graphs">
+            <div class="section-header">
+                <h2>Generated Graphs</h2>
+            </div>
+            <div class="graphs-container">
+                {% if plot_paths %}
+                    {% for plot in plot_paths %}
+                        <img src="{{ plot }}" alt="Generated Chart" class="graph-img">
+                    {% endfor %}
+                {% else %}
+                    <p>No graphs generated.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <footer>
+            <a href="/" class="back-button">Go Back</a>
+        </footer>
+    </div>
+</body>
+</html>
