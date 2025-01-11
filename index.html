@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Analyze CSV</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Upload Your CSV File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Upload File:</label>
+        <input type="file" name="file" id="file" required><br>
+
+        <label for="missing_values">Handle Missing Values:</label>
+        <select name="missing_values">
+            <option value="drop">Drop Rows</option>
+            <option value="fill_mean">Fill with Mean</option>
+            <option value="fill_median">Fill with Median</option>
+        </select><br>
+
+        <label for="outliers">Handle Outliers:</label>
+        <select name="outliers">
+            <option value="remove">Remove Outliers</option>
+            <option value="keep">Keep Outliers</option>
+        </select><br>
+
+        <label for="scaling">Scaling Method:</label>
+        <select name="scaling">
+            <option value="none">None</option>
+            <option value="standard">Standard Scaler</option>
+            <option value="minmax">Min-Max Scaler</option>
+            <option value="robust">Robust Scaler</option>
+        </select><br>
+
+        <label for="target">Target Column:</label>
+        <input type="text" name="target" required><br>
+
+        <label for="ml_model">Machine Learning Model:</label>
+        <select name="ml_model">
+            <option value="logistic">Logistic Regression</option>
+            <option value="decision_tree">Decision Tree</option>
+            <option value="random_forest">Random Forest</option>
+            <option value="svm">Support Vector Machine</option>
+        </select><br>
+
+        <label for="charts">Choose Visualization(s):</label><br>
+        <input type="checkbox" name="charts" value="correlation"> Correlation Heatmap<br>
+        <input type="checkbox" name="charts" value="scatter"> Scatter Plot<br>
+        <input type="checkbox" name="charts" value="boxplot"> Boxplot<br>
+        <input type="checkbox" name="charts" value="pairplot"> Pairplot<br>
+
+        <p><strong>Scatter Plot Configuration:</strong></p>
+        <label for="scatter_x">Scatter Plot X-Axis:</label>
+        <input type="text" name="scatter_x"><br>
+
+        <label for="scatter_y">Scatter Plot Y-Axis:</label>
+        <input type="text" name="scatter_y"><br>
+
+        <h3>Advanced Model Settings:</h3>
+        <label for="test_size">Test Size (percentage, e.g., 0.2 for 20%):</label>
+        <input type="text" name="test_size" value="0.2"><br>
+
+        <label for="random_state">Random State:</label>
+        <input type="text" name="random_state" value="42"><br>
+
+        <p><strong>Note:</strong> Adjust these parameters to fine-tune your model and experiment with different settings to see how they affect the performance.</p>
+
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
